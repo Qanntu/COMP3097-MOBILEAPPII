@@ -1,0 +1,5 @@
+#Ignore files of Xcode
+*.xcuserdata/
+*.xcworkspace/
+DerivedData/
+Pods/
