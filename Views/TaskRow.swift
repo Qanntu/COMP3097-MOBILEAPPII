@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TaskRow: View {
+    @State private var navigateToEditTask = false
+
     var title: String
     var dueDate: String
     

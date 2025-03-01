@@ -13,7 +13,7 @@ struct ProjectRow: View {
     var dueDate: String
     
     var body: some View {
-        NavigationLink(destination: TaskDetailView()) {
+        NavigationLink(destination: TaskListView()) {
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.headline)

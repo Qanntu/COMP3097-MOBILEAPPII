@@ -1,52 +1,49 @@
 //
-//  CreateTaskView.swift
+//  CreateProjectView.swift
 //  HocusFocusApp
 //
-//  Created by liz arbieto on 2025-02-16.
+//  Created by Nyl on 2025-03-01.
 //
 
 import SwiftUI
 
-struct CreateTaskView: View {
-    @State private var navigateToTaskList = false
-    
+struct CreateProjectView: View {
     @State private var title: String = ""
     @State private var dueDate: Date = Date()
-    @State private var selectedProject: String = "project"
-    
-    var projectTitles = ["Mobile App Wireframe", "Mobile App MockUp", "Backend", "Frontend", "Design"]
+    @State private var navigateToTaskList = false
     
     var body: some View {
         ZStack{
             Color(red: 0.35, green: 0.30, blue: 0.62).edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading) {
-                
-                Text("Create New Task")
+                Text("Create New Project")
                     .font(.title)
                     .foregroundColor(.white)
                     .bold()
                     .padding()
                 
-                Text("Task Title")
+                Text("Project Title")
                     .font(.headline)
                     .colorInvert()
                     .padding(.horizontal)
                 
-                TextField("Task Title", text: .constant(""))
+                TextField("Project Title", text: .constant(""))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                Text("Task Details")
+                Text("Project Details")
                     .font(.headline)
                     .colorInvert()
                     .padding(.horizontal)
+                    
                 
                 TextEditor(text: .constant("Enter details here..."))
                     .frame(height: 100)
                     .padding(3)
                     .border(/*@START_MENU_TOKEN@*/Color.orange/*@END_MENU_TOKEN@*/, width: 3.5)
                     .cornerRadius(10)
+                    
                 
                 Text("Due Date")
                     .font(.headline)
@@ -55,33 +52,16 @@ struct CreateTaskView: View {
                 
                 HStack {
                     Image(systemName: "calendar")
+                        .foregroundColor(.white)
+
                     Image(systemName: "clock")
+                        .foregroundColor(.white)
                     Spacer()
+                    
                     DatePicker("", selection: $dueDate, displayedComponents: [.date, .hourAndMinute])
                         .colorInvert()
                         .background(Color.gray)
                 }
-                .padding()
-                
-                HStack(){
-                    Text("Project: ")
-                        .font(.body)
-                        .colorInvert()
-                        .bold()
-                        .padding()
-                    Picker("Project:", selection: $selectedProject){
-                        ForEach(projectTitles, id: \.self){
-                            project in Text(project).tag(project).foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .foregroundColor(.white)
-                    
-                    
-                }
-                .background(.gray)
-                .border(.white)
-                .cornerRadius(10)
                 .padding()
                 
                 Button(action: {navigateToTaskList = true}) {
@@ -101,8 +81,8 @@ struct CreateTaskView: View {
     }
 }
 
-struct CreateTaskView_Previews: PreviewProvider {
+struct CreateProjectView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTaskView()
+        CreateProjectView()
     }
 }

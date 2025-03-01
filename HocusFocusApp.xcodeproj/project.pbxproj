@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22E595962D72D0DC00E23A7E /* CreateProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E595952D72D0DC00E23A7E /* CreateProjectView.swift */; };
 		8D953DB62D622D7F00F5DE0E /* HocusFocusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DB52D622D7F00F5DE0E /* HocusFocusApp.swift */; };
 		8D953DBA2D622D8100F5DE0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D953DB92D622D8100F5DE0E /* Assets.xcassets */; };
 		8D953DBD2D622D8100F5DE0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D953DBC2D622D8100F5DE0E /* Preview Assets.xcassets */; };
@@ -14,7 +15,7 @@
 		8D953DCD2D624ECA00F5DE0E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DCC2D624ECA00F5DE0E /* SignInView.swift */; };
 		8D953DCF2D624EDF00F5DE0E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DCE2D624EDF00F5DE0E /* SignUpView.swift */; };
 		8D953DD12D624EF000F5DE0E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD02D624EF000F5DE0E /* HomeView.swift */; };
-		8D953DD32D624F1700F5DE0E /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD22D624F1700F5DE0E /* TaskDetailView.swift */; };
+		8D953DD32D624F1700F5DE0E /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD22D624F1700F5DE0E /* TaskListView.swift */; };
 		8D953DD52D624F2700F5DE0E /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD42D624F2700F5DE0E /* CreateTaskView.swift */; };
 		8D953DD72D624F4B00F5DE0E /* ProjectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD62D624F4B00F5DE0E /* ProjectRow.swift */; };
 		8D953DD92D624F5900F5DE0E /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD82D624F5900F5DE0E /* TaskRow.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22E595952D72D0DC00E23A7E /* CreateProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectView.swift; sourceTree = "<group>"; };
 		8D953DB22D622D7F00F5DE0E /* HocusFocusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HocusFocusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D953DB52D622D7F00F5DE0E /* HocusFocusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HocusFocusApp.swift; sourceTree = "<group>"; };
 		8D953DB92D622D8100F5DE0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,7 +38,7 @@
 		8D953DCC2D624ECA00F5DE0E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		8D953DCE2D624EDF00F5DE0E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		8D953DD02D624EF000F5DE0E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		8D953DD22D624F1700F5DE0E /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
+		8D953DD22D624F1700F5DE0E /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		8D953DD42D624F2700F5DE0E /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		8D953DD62D624F4B00F5DE0E /* ProjectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRow.swift; sourceTree = "<group>"; };
 		8D953DD82D624F5900F5DE0E /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
@@ -106,10 +108,11 @@
 				8D953DCC2D624ECA00F5DE0E /* SignInView.swift */,
 				8D953DCE2D624EDF00F5DE0E /* SignUpView.swift */,
 				8D953DD02D624EF000F5DE0E /* HomeView.swift */,
-				8D953DD22D624F1700F5DE0E /* TaskDetailView.swift */,
+				8D953DD22D624F1700F5DE0E /* TaskListView.swift */,
 				8D953DD42D624F2700F5DE0E /* CreateTaskView.swift */,
 				8D953DD62D624F4B00F5DE0E /* ProjectRow.swift */,
 				8D953DD82D624F5900F5DE0E /* TaskRow.swift */,
+				22E595952D72D0DC00E23A7E /* CreateProjectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,7 +224,7 @@
 			files = (
 				8D953DE72D625FF200F5DE0E /* UserStorage.swift in Sources */,
 				8D953DD72D624F4B00F5DE0E /* ProjectRow.swift in Sources */,
-				8D953DD32D624F1700F5DE0E /* TaskDetailView.swift in Sources */,
+				8D953DD32D624F1700F5DE0E /* TaskListView.swift in Sources */,
 				8D953DD12D624EF000F5DE0E /* HomeView.swift in Sources */,
 				8D953DE12D6251C000F5DE0E /* ProjectViewModel.swift in Sources */,
 				8D953DCB2D62340500F5DE0E /* SplashView.swift in Sources */,
@@ -229,6 +232,7 @@
 				8D953DB62D622D7F00F5DE0E /* HocusFocusApp.swift in Sources */,
 				8D953DDB2D62501300F5DE0E /* BottomTabBar.swift in Sources */,
 				8D953DE52D625FB400F5DE0E /* User.swift in Sources */,
+				22E595962D72D0DC00E23A7E /* CreateProjectView.swift in Sources */,
 				8D953DD52D624F2700F5DE0E /* CreateTaskView.swift in Sources */,
 				8D953DD92D624F5900F5DE0E /* TaskRow.swift in Sources */,
 				8D953DCF2D624EDF00F5DE0E /* SignUpView.swift in Sources */,

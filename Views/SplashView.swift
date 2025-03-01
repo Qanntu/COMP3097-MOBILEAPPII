@@ -25,6 +25,10 @@ struct SplashView: View {
                 
                 Text("Make magic with your time")
                     .font(.subheadline)
+                    .foregroundColor(.orange)
+                
+                Text("By Liz Cruz Arbieto & Kaman Wong")
+                    .font(.footnote)
                     .foregroundColor(.gray)
                 
                 Spacer()
@@ -52,6 +56,3 @@ struct SplashView: View {
         }
     }
 }
-
-
-

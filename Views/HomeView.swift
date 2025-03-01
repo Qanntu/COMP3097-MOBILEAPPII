@@ -12,37 +12,51 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Welcome Back!")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        Text(userName)
-                            .font(.title)
-                            .bold()
+            ZStack{
+                Color(red: 0.35, green: 0.30, blue: 0.62).edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Welcome Back!")
+                                .font(.caption)
+                                .foregroundColor(.orange)
+                            Text(userName)
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .bold()
+                        }
+                        Spacer()
+                        Image(systemName: "person.crop.circle")
+                            .resizable()
+                            .frame(width: 40, height: 40)
                     }
-                    Spacer()
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .frame(width: 40, height: 40)
+                    .padding()
+                    
+                    Text("Ongoing Projects")
+                        .font(.headline)
+                        .colorInvert()
+                        .padding(.leading)
+                    
+                    List {
+                        ProjectRow(title: "Mobile App Wireframe", tasks: 21, dueDate: "21 March")
+                        ProjectRow(title: "Mobile App MockUp", tasks: 10, dueDate: "21 March")
+                        ProjectRow(title: "Backend", tasks: 2, dueDate: "21 March")
+                        ProjectRow(title: "Frontend", tasks: 2, dueDate: "21 March")
+                        ProjectRow(title: "Design", tasks: 2, dueDate: "21 March")
+                    }
+                    
+                    BottomTabBar()
                 }
-                .padding()
-
-                Text("Ongoing Projects")
-                    .font(.headline)
-                    .padding(.leading)
-
-                List {
-                    ProjectRow(title: "Mobile App Wireframe", tasks: 21, dueDate: "21 March")
-                    ProjectRow(title: "Mobile App MockUp", tasks: 10, dueDate: "21 March")
-                    ProjectRow(title: "Backend", tasks: 2, dueDate: "21 March")
-                    ProjectRow(title: "Frontend", tasks: 2, dueDate: "21 March")
-                    ProjectRow(title: "Design", tasks: 2, dueDate: "21 March")
-                }
+                .navigationBarHidden(true)
             }
-            .navigationBarHidden(true)
         }
+    }
+}
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView(userName: "userName")
     }
 }
 
