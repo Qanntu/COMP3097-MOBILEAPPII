@@ -39,13 +39,9 @@ struct SplashView: View {
                     Text("Let's Start")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.purple)
-                        .foregroundColor(.white)
+                        .background(Color(red: 0.35, green: 0.30, blue: 0.62))
+                        .foregroundColor(.yellow)
                         .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.purple, lineWidth: 3)
-                        )
                 }
                 .padding()
                 .navigationDestination(isPresented: $navigateToSignIn) {
@@ -54,5 +50,10 @@ struct SplashView: View {
             }
             .padding()
         }
+    }
+}
+struct SplashView_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashView()
     }
 }

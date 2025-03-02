@@ -9,75 +9,67 @@ import SwiftUI
 
 struct CreateProjectView: View {
     @State private var title: String = ""
+    @State private var datails: String = "Enter details here..."
     @State private var dueDate: Date = Date()
-    @State private var navigateToTaskList = false
     
-    var body: some View {
-        ZStack{
-            Color(red: 0.35, green: 0.30, blue: 0.62).edgesIgnoringSafeArea(.all)
-            
-            VStack(alignment: .leading) {
-                Text("Create New Project")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .bold()
-                    .padding()
-                
-                Text("Project Title")
-                    .font(.headline)
-                    .colorInvert()
-                    .padding(.horizontal)
-                
-                TextField("Project Title", text: .constant(""))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                Text("Project Details")
-                    .font(.headline)
-                    .colorInvert()
-                    .padding(.horizontal)
-                    
-                
-                TextEditor(text: .constant("Enter details here..."))
-                    .frame(height: 100)
-                    .padding(3)
-                    .border(/*@START_MENU_TOKEN@*/Color.orange/*@END_MENU_TOKEN@*/, width: 3.5)
-                    .cornerRadius(10)
-                    
-                
-                Text("Due Date")
-                    .font(.headline)
-                    .colorInvert()
-                    .padding(.horizontal)
-                
-                HStack {
-                    Image(systemName: "calendar")
-                        .foregroundColor(.white)
-
-                    Image(systemName: "clock")
-                        .foregroundColor(.white)
-                    Spacer()
-                    
-                    DatePicker("", selection: $dueDate, displayedComponents: [.date, .hourAndMinute])
-                        .colorInvert()
-                        .background(Color.gray)
+    @Environment(\.dismiss) var dismiss
+    var body: some View {            VStack(alignment: .leading) {
+            Form{
+                Section {
+                    Text("Create New Project")
+                        .font(.title)
+                        .bold()
+                        .padding(.vertical)
                 }
-                .padding()
+                .listRowBackground(Color.clear)
                 
-                Button(action: {navigateToTaskList = true}) {
-                    Text("Create")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.yellow)
+                Section(header: Text("Project Title").font(.headline)) {
+                    TextField("Enter project title", text: $title)
                         .foregroundColor(.black)
-                        .cornerRadius(10)
-                        .padding()
-                }.navigationDestination(isPresented: $navigateToTaskList) {
-                    TaskListView()
                 }
+                .listRowBackground(Color.white)
+                
+                Section(header: Text("Project Details").font(.headline)) {
+                    TextEditor(text:$datails)
+                        .foregroundColor(.black)
+                        .frame(height: 100)
+                }
+                .listRowBackground(Color.white)
+                
+                Section(header: Text("Due Date").font(.headline)) {
+                    HStack {
+                        Image(systemName: "calendar")
+                        Image(systemName: "clock")
+                        Spacer()
+                        
+                        DatePicker("", selection: $dueDate, displayedComponents: [.date, .hourAndMinute])
+                            .colorInvert()
+                            .labelsHidden()
+                    }
+                    
+                }
+                .listRowBackground(Color
+                    .gray
+                    .opacity(0.9))
+
+                Section {
+                    Button(action: { dismiss() }) {
+                        Text("Create")
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.black)
+                            .padding(8)
+                            .cornerRadius(10)
+                        
+                    }
+                }
+                .listRowBackground(Color.yellow)
             }
-            .padding()
+            .scrollContentBackground(.hidden)
+           
         }
+        .padding()
+        .foregroundColor(.white)
+        .background(Color(red: 0.35, green: 0.30, blue: 0.62))
     }
 }
 

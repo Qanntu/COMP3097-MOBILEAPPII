@@ -8,49 +8,53 @@
 import SwiftUI
 
 struct HomeView: View {
-    var userName: String // Se recibe el nombre del usuario desde SignInView
-    
+    var userName: String
+
     var body: some View {
         NavigationView {
-            ZStack{
-                Color(red: 0.35, green: 0.30, blue: 0.62).edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Welcome Back!")
-                                .font(.caption)
-                                .foregroundColor(.orange)
-                            Text(userName)
-                                .foregroundColor(.white)
-                                .font(.title)
-                                .bold()
-                        }
-                        Spacer()
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                            .frame(width: 40, height: 40)
+            VStack {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Welcome Back!")
+                            .font(.caption)
+                            .foregroundColor(.orange)
+                        Text(userName)           .font(.title)
+                            .bold()
                     }
-                    .padding()
-                    
-                    Text("Ongoing Projects")
-                        .font(.headline)
-                        .colorInvert()
-                        .padding(.leading)
-                    
-                    List {
-                        ProjectRow(title: "Mobile App Wireframe", tasks: 21, dueDate: "21 March")
-                        ProjectRow(title: "Mobile App MockUp", tasks: 10, dueDate: "21 March")
-                        ProjectRow(title: "Backend", tasks: 2, dueDate: "21 March")
-                        ProjectRow(title: "Frontend", tasks: 2, dueDate: "21 March")
-                        ProjectRow(title: "Design", tasks: 2, dueDate: "21 March")
-                    }
-                    
-                    BottomTabBar()
+                    Spacer()
+                    Image(systemName: "person.crop.circle")
+                        .resizable()
+                        .frame(width: 40, height: 40)
                 }
-                .navigationBarHidden(true)
+                .padding()
+                
+                Text("Ongoing Projects")
+                    .font(.title2)
+                    .padding(.leading)
+            
+                List {
+                    ProjectRow(title: "Mobileb App Wireframe", tasks: 21, dueDate: "21 March")
+                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
+                    ProjectRow(title: "Mobile App MockUp", tasks: 10, dueDate: "21 March")
+                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
+                    ProjectRow(title: "Backend", tasks: 2, dueDate: "21 March")
+                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
+                    ProjectRow(title: "Frontend", tasks: 2, dueDate: "21 March")
+                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
+                    ProjectRow(title: "Design", tasks: 2, dueDate: "21 March")
+                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
+                }
+                .padding()
+                .listStyle(PlainListStyle())
+                Spacer()
+                
+                BottomTabBarProject()
             }
+            .background(Color(red: 0.35, green: 0.30, blue: 0.62))
+            .navigationBarHidden(true)
+            .foregroundColor(.white)
         }
+        .tint(Color(red: 0.15, green: 0.18, blue: 0.20))
     }
 }
 

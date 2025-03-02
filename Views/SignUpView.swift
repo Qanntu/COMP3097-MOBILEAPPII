@@ -35,11 +35,11 @@ struct SignUpView: View {
             
             Button("Sign Up") {
                 userStorage.addUser(name: name, email: email, password: password)
-                presentationMode.wrappedValue.dismiss() // Volver a la pantalla anterior
+                presentationMode.wrappedValue.dismiss()
             }
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color.purple)
+            .background(Color(red: 0.35, green: 0.30, blue: 0.62))
             .foregroundColor(.white)
             .cornerRadius(10)
             

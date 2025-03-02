@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22E595962D72D0DC00E23A7E /* CreateProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E595952D72D0DC00E23A7E /* CreateProjectView.swift */; };
+		22E595982D740C6A00E23A7E /* BottomTabBarTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E595972D740C6A00E23A7E /* BottomTabBarTask.swift */; };
 		8D953DB62D622D7F00F5DE0E /* HocusFocusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DB52D622D7F00F5DE0E /* HocusFocusApp.swift */; };
 		8D953DBA2D622D8100F5DE0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D953DB92D622D8100F5DE0E /* Assets.xcassets */; };
 		8D953DBD2D622D8100F5DE0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D953DBC2D622D8100F5DE0E /* Preview Assets.xcassets */; };
@@ -19,7 +20,7 @@
 		8D953DD52D624F2700F5DE0E /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD42D624F2700F5DE0E /* CreateTaskView.swift */; };
 		8D953DD72D624F4B00F5DE0E /* ProjectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD62D624F4B00F5DE0E /* ProjectRow.swift */; };
 		8D953DD92D624F5900F5DE0E /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DD82D624F5900F5DE0E /* TaskRow.swift */; };
-		8D953DDB2D62501300F5DE0E /* BottomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DDA2D62501300F5DE0E /* BottomTabBar.swift */; };
+		8D953DDB2D62501300F5DE0E /* BottomTabBarProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DDA2D62501300F5DE0E /* BottomTabBarProject.swift */; };
 		8D953DDD2D62516000F5DE0E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DDC2D62516000F5DE0E /* Project.swift */; };
 		8D953DDF2D62516F00F5DE0E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DDE2D62516F00F5DE0E /* Task.swift */; };
 		8D953DE12D6251C000F5DE0E /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D953DE02D6251C000F5DE0E /* ProjectViewModel.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		22E595952D72D0DC00E23A7E /* CreateProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectView.swift; sourceTree = "<group>"; };
+		22E595972D740C6A00E23A7E /* BottomTabBarTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarTask.swift; sourceTree = "<group>"; };
 		8D953DB22D622D7F00F5DE0E /* HocusFocusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HocusFocusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D953DB52D622D7F00F5DE0E /* HocusFocusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HocusFocusApp.swift; sourceTree = "<group>"; };
 		8D953DB92D622D8100F5DE0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,7 +44,7 @@
 		8D953DD42D624F2700F5DE0E /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		8D953DD62D624F4B00F5DE0E /* ProjectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRow.swift; sourceTree = "<group>"; };
 		8D953DD82D624F5900F5DE0E /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
-		8D953DDA2D62501300F5DE0E /* BottomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBar.swift; sourceTree = "<group>"; };
+		8D953DDA2D62501300F5DE0E /* BottomTabBarProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarProject.swift; sourceTree = "<group>"; };
 		8D953DDC2D62516000F5DE0E /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		8D953DDE2D62516F00F5DE0E /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8D953DE02D6251C000F5DE0E /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 		8D953DC62D62332300F5DE0E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8D953DDA2D62501300F5DE0E /* BottomTabBar.swift */,
+				8D953DDA2D62501300F5DE0E /* BottomTabBarProject.swift */,
+				22E595972D740C6A00E23A7E /* BottomTabBarTask.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -230,7 +233,8 @@
 				8D953DCB2D62340500F5DE0E /* SplashView.swift in Sources */,
 				8D953DDD2D62516000F5DE0E /* Project.swift in Sources */,
 				8D953DB62D622D7F00F5DE0E /* HocusFocusApp.swift in Sources */,
-				8D953DDB2D62501300F5DE0E /* BottomTabBar.swift in Sources */,
+				8D953DDB2D62501300F5DE0E /* BottomTabBarProject.swift in Sources */,
+				22E595982D740C6A00E23A7E /* BottomTabBarTask.swift in Sources */,
 				8D953DE52D625FB400F5DE0E /* User.swift in Sources */,
 				22E595962D72D0DC00E23A7E /* CreateProjectView.swift in Sources */,
 				8D953DD52D624F2700F5DE0E /* CreateTaskView.swift in Sources */,
