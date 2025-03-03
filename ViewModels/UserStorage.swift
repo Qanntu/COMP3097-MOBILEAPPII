@@ -7,19 +7,27 @@
 
 import Foundation
 
+//class to controll user storage, just for UI design
 class UserStorage: ObservableObject {
     @Published var users: [User] = []
+    
+    //file to save users we create
     private let fileName = "users.txt"
-
+    
+    
+    //initializer to load user
     init() {
         loadUsers()
     }
-
+    //to get file URL in the document directory.
     private var fileURL: URL {
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return directory.appendingPathComponent(fileName)
     }
 
+    //functions save, load and add were created with IA chat Gpt because
+    //backend is not required for UI design but we wanted to added easily for
+    // demostration purpose in login part
     func saveUsers() {
         do {
             let data = try JSONEncoder().encode(users)
@@ -41,7 +49,7 @@ class UserStorage: ObservableObject {
                 print("Error decoding user data: \(error.localizedDescription)")
             }
         } else {
-            print("ℹ️ No users file found. Creating a new one...")
+            print("No users file found. Creating a new one...")
             saveUsers()
         }
     }

@@ -5,6 +5,7 @@
 //  Created by liz arbieto on 2025-02-16.
 //
 
+// Here we configurate list of task
 import SwiftUI
 
 struct TaskRow: View {
