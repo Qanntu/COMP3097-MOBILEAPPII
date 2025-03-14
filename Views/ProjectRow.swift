@@ -15,27 +15,31 @@ struct ProjectRow: View {
     
     var body: some View {
         NavigationLink(destination: TaskListView()) {
-            HStack{
-                VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.headline)
-                    Text("Next task due 1 March")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    Spacer()
-                    
-                    Text("Due on: \(dueDate)")
-                        .font(.footnote)
-                }
+            VStack(alignment: .leading, spacing: 5) { // ✅ Use VStack to structure the content
+                Text(title)
+                    .font(.headline)
+                
+                Text("Next task due 1 March")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                
                 Spacer()
                 
-                Text("\(tasks) Tasks")
-                    .font(.caption)
-                    .foregroundColor(.yellow)
+                Text("Due on: \(dueDate)")
+                    .font(.footnote)
+                
+                HStack {
+                    Spacer()
+                    Text("\(tasks) Tasks")
+                        .font(.caption)
+                        .foregroundColor(.yellow)
+                }
             }
+            .padding()
+            .background(Color(red: 0.27, green: 0.353, blue: 0.392)) // color for each project
+            .cornerRadius(10) //rounded corners
         }
-        .padding()
+        .padding(.vertical, 3)  //space between projects
         .foregroundColor(.white)
     }
 }
-

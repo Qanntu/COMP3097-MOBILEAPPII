@@ -12,6 +12,7 @@ struct SignInView: View {
     @State private var password = ""
     @State private var isAuthenticated = false
     @State private var userName = ""
+    @State private var userId = ""
     @State private var errorMessage = ""
 
     var body: some View {
@@ -72,30 +73,65 @@ struct SignInView: View {
                 self.dismissKeyboard()
             }
             .navigationDestination(isPresented: $isAuthenticated) {
-                HomeView(userName: userName)
+                HomeView(userName: userName, userId: userId)
             }
         }
     }
-
+    
     func authenticateUser() {
-        let fileName = "users.txt"
-        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = directory.appendingPathComponent(fileName)
+        guard let url = URL(string: "http://localhost:5000/api/users/login") else { return }
         
-        do {
-            let data = try Data(contentsOf: fileURL)
-            let users = try JSONDecoder().decode([User].self, from: data)
-            
-            if let user = users.first(where: { $0.email == email && $0.password == password }) {
-                userName = user.name
-                isAuthenticated = true
-                errorMessage = ""
-            } else {
-                errorMessage = "Invalid email or password."
+        let lowercasedEmail = email.lowercased()
+
+        let body: [String: Any] = [
+            "email": lowercasedEmail,
+            "password": password
+        ]
+        
+        guard let finalBody = try? JSONSerialization.data(withJSONObject: body) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = finalBody
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Network error. Please try again."
+                }
+                return
             }
-        } catch {
-            errorMessage = "Error loading user data."
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                if let responseData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let userName = responseData["name"] as? String,
+                   let userId = responseData["id"] as? String {
+                    DispatchQueue.main.async {
+                        self.userName = userName
+                        self.isAuthenticated = true
+                        self.navigateToHome(userName: userName, userId: userId)
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Invalid email/password"
+                }
+            }
+        }.resume()
+    }
+
+    func navigateToHome(userName: String, userId: String) {
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = scene.windows.first else {
+            return
         }
+
+        let homeView = HomeView(userName: userName, userId: userId)
+        let hostingController = UIHostingController(rootView: homeView)
+        
+        window.rootViewController = hostingController
+        window.makeKeyAndVisible()
     }
 }
 
@@ -104,4 +140,3 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-
