@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct BottomTabBarProject: View {
-    @State private var navigateToCreateProject = false
+    var userId: String //userId is required
+    @Binding var showCreateProject: Bool
+
     var body: some View {
-        
         HStack {
-            Button(action: {navigateToCreateProject = true}) {
+            Button(action: { showCreateProject = true }) {
                 VStack {
                     Image(systemName: "plus.circle.fill")
-                        .font(.largeTitle)
-                }
+                        .font(.largeTitle)}
             }
             .frame(maxWidth: .infinity)
-            .navigationDestination(isPresented:$navigateToCreateProject){ CreateProjectView()
-            }
         }
         .padding()
         .foregroundColor(.gray)

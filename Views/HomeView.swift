@@ -9,58 +9,65 @@ import SwiftUI
 
 struct HomeView: View {
     var userName: String
+    var userId: String
+    @StateObject private var viewModel = ProjectViewModel()
+    @State private var showCreateProject = false  // Controls navigation
 
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Welcome Back!")
-                            .font(.caption)
-                            .foregroundColor(.orange)
-                        Text(userName)           .font(.title)
-                            .bold()
+        NavigationStack {
+            ZStack {
+                Color(red: 0.35, green: 0.30, blue: 0.62)
+                    .edgesIgnoringSafeArea(.all)
+
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Welcome Back!")
+                                .font(.caption)
+                                .foregroundColor(.orange)
+                            Text(userName)
+                                .font(.title)
+                                .foregroundColor(.orange)
+                                .bold()
+                        }
+                        Spacer()
+                        Image(systemName: "person.crop.circle")
+                            .resizable()
+                            .frame(width: 40, height: 40)
                     }
+                    .padding()
+
+                    Text("Ongoing Projects")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+
+                    ScrollView { // Scrolling for all projects
+                        VStack(spacing: 8) { // Space between project rows
+                            if viewModel.projects.isEmpty {
+                                Text("No projects found")
+                                    .foregroundColor(.gray)
+                                    .padding()
+                            } else {
+                                ForEach(viewModel.projects) { project in  // Displaying projects in separate rows
+                                    ProjectRow(title: project.title, tasks: project.tasks, dueDate: project.dueDate)
+                                        .padding(.horizontal)
+                                }
+                            }
+                        }
+                    }
+
                     Spacer()
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .frame(width: 40, height: 40)
+
+                    BottomTabBarProject(userId: userId, showCreateProject: $showCreateProject)
                 }
-                .padding()
-                
-                Text("Ongoing Projects")
-                    .font(.title2)
-                    .padding(.leading)
-            
-                List {
-                    ProjectRow(title: "Mobileb App Wireframe", tasks: 21, dueDate: "21 March")
-                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
-                    ProjectRow(title: "Mobile App MockUp", tasks: 10, dueDate: "21 March")
-                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
-                    ProjectRow(title: "Backend", tasks: 2, dueDate: "21 March")
-                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
-                    ProjectRow(title: "Frontend", tasks: 2, dueDate: "21 March")
-                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
-                    ProjectRow(title: "Design", tasks: 2, dueDate: "21 March")
-                        .listRowBackground(Color(red: 0.28, green: 0.33, blue: 0.35))
+                .onAppear {
+                    viewModel.fetchProjects(userId: userId)
                 }
-                .padding()
-                .listStyle(PlainListStyle())
-                Spacer()
-                
-                BottomTabBarProject()
             }
-            .background(Color(red: 0.35, green: 0.30, blue: 0.62))
-            .navigationBarHidden(true)
-            .foregroundColor(.white)
+            .navigationDestination(isPresented: $showCreateProject) {
+                CreateProjectView(userId: userId)
+            }
         }
-        .tint(Color(red: 0.15, green: 0.18, blue: 0.20))
     }
 }
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(userName: "userName")
-    }
-}
-
