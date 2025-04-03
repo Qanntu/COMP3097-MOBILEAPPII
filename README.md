@@ -3,14 +3,14 @@
 This is a full-stack employee management system built with **Angular**, **Node.js**, **Express**, **MongoDB**, and **GraphQL**. 
 It supports user registration/login, employee CRUD operations, and search functionality by department and designation.
 
-## 🔗 Live Deployments
+## Live Deployments
 
 - **Frontend (Vercel):** [https://101470163-comp3133-assignment2.vercel.app/login ]([https://your-frontend-url.vercel.app](https://101470163-comp3133-assignment2.vercel.app/login ))
 - **Backend (Render):** [https://one01470163-comp3133-assignment2.onrender.com]([https://your-backend-url.onrender.com/graphql](https://one01470163-comp3133-assignment2.onrender.com))
 
 ---
 
-## ⚙️ Features
+## Features
 
 - **Authentication:** Signup and login with JWT
 - **CRUD Operations:** Create, read, update, delete employees
@@ -20,7 +20,7 @@ It supports user registration/login, employee CRUD operations, and search functi
 
 ---
 
-## 🧪 Test
+## Test
 
 You can use this login to test the system:
 
