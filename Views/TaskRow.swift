@@ -8,7 +8,6 @@
 // Here we configurate list of task
 import SwiftUI
 
-import SwiftUI
 
 struct TaskRow: View {
     @State private var showAlert = false
