@@ -2,12 +2,13 @@
 //  SplashView.swift
 //  HocusFocusApp
 //
-//  Created by liz arbieto on 2025-02-16.
-//
+//  Created by liz cruz
+//  Student ID: 101470163
 
 import SwiftUI
 
 struct SplashView: View {
+//  navigate to Sign in view
     @State private var navigateToSignIn = false
     
     var body: some View {
@@ -22,11 +23,11 @@ struct SplashView: View {
                 Text("HOCUS FOCUS")
                     .font(.largeTitle)
                     .bold()
-                
+
                 Text("Make magic with your time")
                     .font(.subheadline)
                     .foregroundColor(.orange)
-                
+                // Team members
                 Text("By Liz Cruz Arbieto & Kaman Wong")
                     .font(.footnote)
                     .foregroundColor(.gray)

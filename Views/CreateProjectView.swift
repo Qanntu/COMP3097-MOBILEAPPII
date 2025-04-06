@@ -2,8 +2,8 @@
 //  CreateProjectView.swift
 //  HocusFocusApp
 //
-//  Created by Kaman on 2025-03-01.
-//
+//  Created by Kaman
+//  Student ID: 101424041
 
 import SwiftUI
 

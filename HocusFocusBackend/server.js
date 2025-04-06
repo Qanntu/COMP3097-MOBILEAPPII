@@ -1,3 +1,5 @@
+// 101470163 Liz cruz
+
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
@@ -19,10 +21,13 @@ mongoose
 //Import Routes
 const userRoutes = require("./routes/userRoutes");
 const projectRoutes = require("./routes/projectRoutes");
+const taskRoutes = require("./routes/taskRoutes");
 
 //user Routes
 app.use("/api/users", userRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/tasks", taskRoutes);
+
 
 //Default Route To Check If Server is Running
 app.get("/", (req, res) => {

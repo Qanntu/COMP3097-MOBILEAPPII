@@ -2,15 +2,23 @@
 //  Task.swift
 //  HocusFocusApp
 //
-//  Created by liz arbieto on 2025-02-16.
-//
+//  Created by liz cruz
+//  Student ID: 101470163
 
 import Foundation
 
-struct Task: Identifiable {
-    var id = UUID()
+struct Task: Identifiable, Codable {
+    var id: String
     var title: String
     var dueDate: String
     var isCompleted: Bool
-}
+    var projectId: String
 
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case title
+        case dueDate = "dueDate"
+        case isCompleted = "isCompleted"
+        case projectId = "projectId"
+    }
+}

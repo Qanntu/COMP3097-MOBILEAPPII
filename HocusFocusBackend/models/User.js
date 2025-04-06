@@ -1,3 +1,4 @@
+// Kaman Wong 101424041
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
