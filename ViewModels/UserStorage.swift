@@ -2,8 +2,8 @@
 //  UserStorage.swift
 //  HocusFocusApp
 //
-//  Created by liz arbieto on 2025-02-16.
-//
+//  Created by liz cruz
+//  Student ID: 101470163
 
 import Foundation
 
