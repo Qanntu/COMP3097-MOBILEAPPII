@@ -2,8 +2,8 @@
 //  HomeView.swift
 //  HocusFocusApp
 //
-//  Created by liz arbieto on 2025-02-16.
-//
+//  Created by liz arbieto - Student ID: 101470163.
+//  Created by Kaman - Student ID: 101424041.
 
 import SwiftUI
 
@@ -11,7 +11,8 @@ struct HomeView: View {
     var userName: String
     var userId: String
     @StateObject private var viewModel = ProjectViewModel()
-    @State private var showCreateProject = false  // Controls navigation
+    @StateObject private var taskViewModel = TaskViewModel()
+    @State private var showCreateProject = false
 
     var body: some View {
         NavigationStack {
@@ -30,10 +31,23 @@ struct HomeView: View {
                                 .foregroundColor(.orange)
                                 .bold()
                         }
+
                         Spacer()
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                            .frame(width: 40, height: 40)
+
+                        //  logout botton
+                        VStack(spacing: 4) {
+                            Button(action: {
+                                logout()
+                            }) {
+                                Image(systemName: "arrow.backward.circle.fill")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.red)
+                            }
+                            Text("Logout")
+                                .font(.caption2)
+                                .foregroundColor(.white)
+                        }
                     }
                     .padding()
 
@@ -42,15 +56,16 @@ struct HomeView: View {
                         .foregroundColor(.white)
                         .padding(.leading)
 
-                    ScrollView { // Scrolling for all projects
-                        VStack(spacing: 8) { // Space between project rows
+                    ScrollView {
+                        VStack(spacing: 8) {
                             if viewModel.projects.isEmpty {
                                 Text("No projects found")
                                     .foregroundColor(.gray)
                                     .padding()
                             } else {
-                                ForEach(viewModel.projects) { project in  // Displaying projects in separate rows
-                                    ProjectRow(title: project.title, tasks: project.tasks, dueDate: project.dueDate)
+                                // project list
+                                ForEach(viewModel.projects) { project in
+                                    ProjectRow(project: project, projectViewModel: viewModel)
                                         .padding(.horizontal)
                                 }
                             }
@@ -58,7 +73,8 @@ struct HomeView: View {
                     }
 
                     Spacer()
-
+                    
+//                  create project page
                     BottomTabBarProject(userId: userId, showCreateProject: $showCreateProject)
                 }
                 .onAppear {
@@ -69,5 +85,18 @@ struct HomeView: View {
                 CreateProjectView(userId: userId)
             }
         }
+    }
+
+    // function to go SignInView
+    func logout() {
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = scene.windows.first else {
+            return
+        }
+
+        let signInView = SignInView()
+        let hostingController = UIHostingController(rootView: signInView)
+        window.rootViewController = hostingController
+        window.makeKeyAndVisible()
     }
 }

@@ -16,6 +16,7 @@ struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
+        // Form body
         VStack {
             Text("Create an Account")
                 .font(.title)
@@ -66,6 +67,7 @@ struct SignUpView: View {
     }
     
     func registerUser() {
+//        set url
         guard let url = URL(string: "http://localhost:5000/api/users/register") else {
             DispatchQueue.main.async {
                 self.errorMessage = "Invalid server URL"
@@ -85,7 +87,7 @@ struct SignUpView: View {
             }
             return
         }
-        
+//        call backend
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -3,17 +3,23 @@
 //  HocusFocusApp
 //
 //  Created by liz arbieto on 2025-02-16.
-//
+//  Student ID: 101470163
 
 import SwiftUI
 
+
 struct TaskListView: View {
-    @State private var showAlert = false
-    @State private var navigateToCreateTask = false
+    var project: Project
+    @ObservedObject var taskViewModel: TaskViewModel
     @Environment(\.dismiss) var dismiss
+    @State private var showAlert = false
+
+    func fetchTasks() {
+        taskViewModel.fetchTasks(projectId: project.id)
+    }
 
     var body: some View {
-        ZStack{
+        ZStack {
             Color(red: 0.35, green: 0.30, blue: 0.62).edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading) {
@@ -22,78 +28,84 @@ struct TaskListView: View {
                     .foregroundColor(.white)
                     .bold()
                     .padding()
-                    .accessibilityIdentifier(/*@START_MENU_TOKEN@*/"Identifier"/*@END_MENU_TOKEN@*/)
-                HStack{                Text("Mobile App Wireframe")
+                
+                // project title
+                HStack {
+                    Text(project.title)
                         .font(.title)
                         .colorInvert()
                         .bold()
                         .padding(.horizontal)
+                    
                     Spacer()
-                    Button(action: {showAlert = true}) {
-                        Image(systemName: "trash")
-                            .foregroundColor(.red)
-                    }
-                    .padding()
-                    .buttonStyle(PlainButtonStyle())
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("Delete Project"),
-                            message: Text("Are you sure you want to delete this Project?"),
-                            primaryButton: .destructive(Text("Delete")) {dismiss()},
-                            secondaryButton: .cancel()
-                        )
-                    }
+
                 }
-            
+                
+                // due date
                 HStack {
                     Image(systemName: "calendar")
-                    Text("Due Date: 20 June")
+                    Text("Due Date: \(formatDate(from: project.dueDate))")
                 }
                 .padding(.horizontal)
                 .foregroundColor(.yellow)
                 
+                // project details
                 Text("Project Details")
                     .colorInvert()
                     .font(.headline)
                     .padding(.horizontal)
-                Text("Lorem ipsum is simply dummy text of the printing and typesetting industry...")
+                
+                Text(project.details)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(.horizontal)
                 
+                // progress
                 Text("Project Progress")
                     .font(.headline)
                     .colorInvert()
                     .padding(.horizontal)
                 
-                List {
-                    TaskRow(title: "User Interviews", dueDate: "1 March")
-                    .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
-                                       
-                    TaskRow(title: "Wireframes", dueDate: "21 March")
-                    .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
-
-                    TaskRow(title: "Icons", dueDate: "21 March")
-                    .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
-                    TaskRow(title: "Final Draft", dueDate: "21 March")
-                    .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
-                    TaskRow(title: "Meeting with", dueDate: "21 March")
-                    .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
-                    TaskRow(title: "Mobile Description", dueDate: "21 March")
-                    .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
-                }
+                // List of tasks
+                List(taskViewModel.tasks) { task in
+                    TaskRow(task: task, taskViewModel: taskViewModel)
+                        .listRowBackground(Color(red: 0.35, green: 0.30, blue: 0.62))
+                        .swipeActions {
+                            
+                            Button(action: {                                taskViewModel.toggleCompletion(taskId: task.id, isCompleted: !task.isCompleted)
+                                    fetchTasks()
+                            }) {
+                                Label("Complete", systemImage: "checkmark.circle")
+                            }
+                            .tint(.green)
+                        }
+                }.background(Color(red: 0.35, green: 0.30, blue: 0.62))
                 .listStyle(PlainListStyle())
+                
                 Spacer()
                 
-                BottomTabBarTask()
+//              create task page
+                BottomTabBarTask(
+                    taskViewModel: taskViewModel,
+                    projectId: project.id,
+                    projectName: project.title
+                )
             }
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                fetchTasks()
+            }
         }
     }
-}
 
-struct TaskListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TaskListView()
+    // date
+    func formatDate(from isoDate: String) -> String {
+        let isoFormatter = ISO8601DateFormatter()
+        if let date = isoFormatter.date(from: isoDate) {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            return formatter.string(from: date)
+        }
+        return isoDate
     }
 }

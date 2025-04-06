@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
+//    var of sign up
     @State private var email = ""
     @State private var password = ""
     @State private var isAuthenticated = false
@@ -26,7 +27,7 @@ struct SignInView: View {
                 Text("Welcome to Hocus Focus")
                     .font(.title)
                     .bold()
-                
+                // form
                 TextField("Email or phone number", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
@@ -78,6 +79,7 @@ struct SignInView: View {
         }
     }
     
+//  check user sign up
     func authenticateUser() {
         guard let url = URL(string: "http://localhost:5000/api/users/login") else { return }
         
@@ -89,7 +91,7 @@ struct SignInView: View {
         ]
         
         guard let finalBody = try? JSONSerialization.data(withJSONObject: body) else { return }
-        
+//        call backend api
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

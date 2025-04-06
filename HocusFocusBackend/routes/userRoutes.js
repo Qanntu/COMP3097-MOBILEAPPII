@@ -1,3 +1,5 @@
+//101470163 Liz Cruz
+//Kaman Wong 101424041 : login logic
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");

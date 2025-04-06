@@ -2,44 +2,77 @@
 //  ProjectRow.swift
 //  HocusFocusApp
 //
-//  Created by liz arbieto on 2025-02-16.
-//
+//  Created by Kaman
+//  Student ID: 101424041
 
 //Here we set list of projects or categories.
 import SwiftUI
+import SwiftUI
 
 struct ProjectRow: View {
-    var title: String
-    var tasks: Int
-    var dueDate: String
-    
+    var project: Project
+    @ObservedObject var projectViewModel: ProjectViewModel
+
     var body: some View {
-        NavigationLink(destination: TaskListView()) {
-            VStack(alignment: .leading, spacing: 5) { // ✅ Use VStack to structure the content
-                Text(title)
-                    .font(.headline)
-                
-                Text("Next task due 1 March")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                
-                Spacer()
-                
-                Text("Due on: \(dueDate)")
-                    .font(.footnote)
-                
-                HStack {
-                    Spacer()
-                    Text("\(tasks) Tasks")
-                        .font(.caption)
-                        .foregroundColor(.yellow)
+        VStack {
+            HStack {
+                NavigationLink(destination: TaskListView(project: project, taskViewModel: TaskViewModel())) {
+                    // project info
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(project.title)
+                            .font(.headline)
+                        
+                        Text("Next task due \(nextTaskDueDate())")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
+                        Spacer()
+                        
+                        Text("Due on: \(project.dueDate)")
+                            .font(.footnote)
+                        
+                        HStack {
+                            Spacer()
+                            Text("\(project.tasks.count) Tasks")
+                                .font(.caption)
+                                .foregroundColor(.yellow)
+                        }
+                    }
+                    .padding()
+                    .background(Color(red: 0.27, green: 0.353, blue: 0.392))
+                    .cornerRadius(10)
                 }
+                .padding(.vertical, 3)
+                .foregroundColor(.white)
+                
+                // delete project 
+                Button(action: {
+                    projectViewModel.deleteProject(projectId: project.id) {
+                        projectViewModel.projects.removeAll { $0.id == project.id }
+                    }
+                }) {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                }
+                .padding()
             }
-            .padding()
-            .background(Color(red: 0.27, green: 0.353, blue: 0.392)) // color for each project
-            .cornerRadius(10) //rounded corners
         }
-        .padding(.vertical, 3)  //space between projects
-        .foregroundColor(.white)
+    }
+
+    func nextTaskDueDate() -> String {
+        let isoFormatter = ISO8601DateFormatter()
+        let displayFormatter = DateFormatter()
+        displayFormatter.dateStyle = .medium
+
+        let upcomingDates = project.tasks
+            .filter { !$0.isCompleted }
+            .compactMap { isoFormatter.date(from: $0.dueDate) }
+            .sorted()
+
+        if let nextDate = upcomingDates.first {
+            return displayFormatter.string(from: nextDate)
+        } else {
+            return "N/A"
+        }
     }
 }
