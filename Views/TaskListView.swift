@@ -11,6 +11,7 @@ import SwiftUI
 struct TaskListView: View {
     var project: Project
     @ObservedObject var taskViewModel: TaskViewModel
+    // dismiss the current view, form AI
     @Environment(\.dismiss) var dismiss
     @State private var showAlert = false
 

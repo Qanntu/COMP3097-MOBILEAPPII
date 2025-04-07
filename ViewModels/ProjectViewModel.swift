@@ -10,7 +10,7 @@ import SwiftUI
 class ProjectViewModel: ObservableObject {
 
     @Published var projects: [Project] = [] //project list
-    
+
     //get projects by user
     func fetchProjects(userId: String) {
         guard let url = URL(string: "http://localhost:5000/api/projects/\(userId)") else {
@@ -18,6 +18,7 @@ class ProjectViewModel: ObservableObject {
             return
         }
         
+        // used for making network requests, form IA
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 print("Error fetching projects: \(error.localizedDescription)")
@@ -42,7 +43,6 @@ class ProjectViewModel: ObservableObject {
             }
         }.resume()
     }
-
 
     //function to delete project
     func deleteProject(projectId: String, completion: @escaping () -> Void) {
